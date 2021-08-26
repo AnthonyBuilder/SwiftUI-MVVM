@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  Minimal.swift
 //  swiftui-mvvm
 //
 //  Created by Anthony on 25/08/21.
@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // MARK: ViewModel
     @ObservedObject private var model: ContentViewModel
     
     init(model: ContentViewModel) {
@@ -27,6 +28,8 @@ struct ContentViewState {
 }
 
 class ContentViewModel: ObservableObject {
+    
+    // MARK: Model
     @Published private(set) var state: ContentViewState
     
     init(initialState: ContentViewState = .init()) {
@@ -42,6 +45,7 @@ class ContentViewModel: ObservableObject {
     }
 }
 
+/// Previews with content Loading and Loaded 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
