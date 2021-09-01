@@ -12,7 +12,7 @@
 		92BC80B926D6BD2F00AF432C /* Minimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BC80B826D6BD2F00AF432C /* Minimal.swift */; };
 		92BC80BB26D6BD3400AF432C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BC80BA26D6BD3400AF432C /* Assets.xcassets */; };
 		92BC80BE26D6BD3400AF432C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BC80BD26D6BD3400AF432C /* Preview Assets.xcassets */; };
-		92BC80C826D6BD3400AF432C /* swiftui_mvvmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BC80C726D6BD3400AF432C /* swiftui_mvvmTests.swift */; };
+		92BC80C826D6BD3400AF432C /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BC80C726D6BD3400AF432C /* LoginTests.swift */; };
 		92BC80D226D6BD3400AF432C /* swiftui_mvvmUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BC80D126D6BD3400AF432C /* swiftui_mvvmUITests.swift */; };
 		92BC80D426D6BD3400AF432C /* swiftui_mvvmUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BC80D326D6BD3400AF432C /* swiftui_mvvmUITestsLaunchTests.swift */; };
 		92BC80E226D7089E00AF432C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BC80E126D7089E00AF432C /* Login.swift */; };
@@ -43,7 +43,7 @@
 		92BC80BA26D6BD3400AF432C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92BC80BD26D6BD3400AF432C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		92BC80C326D6BD3400AF432C /* swiftui-mvvmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swiftui-mvvmTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		92BC80C726D6BD3400AF432C /* swiftui_mvvmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_mvvmTests.swift; sourceTree = "<group>"; };
+		92BC80C726D6BD3400AF432C /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		92BC80CD26D6BD3400AF432C /* swiftui-mvvmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swiftui-mvvmUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92BC80D126D6BD3400AF432C /* swiftui_mvvmUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_mvvmUITests.swift; sourceTree = "<group>"; };
 		92BC80D326D6BD3400AF432C /* swiftui_mvvmUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_mvvmUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		92BC80C626D6BD3400AF432C /* swiftui-mvvmTests */ = {
 			isa = PBXGroup;
 			children = (
-				92BC80C726D6BD3400AF432C /* swiftui_mvvmTests.swift */,
+				92BC80C726D6BD3400AF432C /* LoginTests.swift */,
 			);
 			path = "swiftui-mvvmTests";
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92BC80C826D6BD3400AF432C /* swiftui_mvvmTests.swift in Sources */,
+				92BC80C826D6BD3400AF432C /* LoginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

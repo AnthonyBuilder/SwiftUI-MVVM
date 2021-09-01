@@ -49,7 +49,7 @@ struct LoginView: View {
 //    }
 }
 
-struct LoginViewState {
+struct LoginViewState: Equatable {
     var email = ""
     var password = ""
     var isLogginIn = false
