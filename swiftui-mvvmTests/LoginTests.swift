@@ -18,18 +18,21 @@ class LoginTests: XCTestCase {
     }
     
     func testDefaultInitialState() {
-        XCTAssert(
-            viewModel.state == LoginViewState(
+        XCTAssertEqual(
+            viewModel.state, LoginViewState(
                 email: "",
                 password: "",
                 isLogginIn: false,
                 isShowingAlertError: false
             )
         )
+        
+        XCTAssertFalse(viewModel.state.canSubmit)
+        XCTAssert(viewModel.state.footerMessage.isEmpty)
     }
 
     func testSuccesfulLoginFlow() {
-        XCTFail()
+        
     }
     
     func testUnsuccesfulLoginFlow() {
