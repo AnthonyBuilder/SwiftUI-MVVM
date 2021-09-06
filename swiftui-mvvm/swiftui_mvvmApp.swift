@@ -11,7 +11,13 @@ import SwiftUI
 struct swiftui_mvvmApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView(model: .init(initialState: .init()))
+            LoginView(
+                model: .init(
+                    initialState: .init(),
+                    service: EmptyLoginService(),
+                    loginDidSucceded: {}
+                )
+            )
         }
     }
 }

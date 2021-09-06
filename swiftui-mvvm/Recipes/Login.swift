@@ -57,12 +57,29 @@ struct LoginViewState: Equatable {
 }
 
 extension LoginViewState {
-    var canSubmit: Bool { email.isEmpty == false && password.isEmpty == false }
-    var footerMessage: String { isLogginIn ? "Fazendo login..." : "" }
+    static let isLogginInFooter = "Fazendo login.."
+    
+    var canSubmit: Bool {
+        email.isEmpty == false && password.isEmpty == false && isLogginIn == false
+    }
+    
+    var footerMessage: String {
+        isLogginIn ? Self.isLogginInFooter : ""
+    }
+}
+
+protocol LoginService {
+    func login(email: String, password: String, completion: @escaping (Error?) -> Void)
+}
+
+struct EmptyLoginService: LoginService {
+    func login(email: String, password: String, completion: @escaping (Error?) -> Void) {}
 }
 
 final class LoginViewModel: ObservableObject {
     @Published var state: LoginViewState
+    private let service: LoginService
+    private let loginDidSucceded: () -> Void
     
     var bindings: (email: Binding<String>, password: Binding<String>, errorAlert: Binding<Bool>) {
         (
@@ -72,15 +89,21 @@ final class LoginViewModel: ObservableObject {
         )
     }
     
-    init(initialState: LoginViewState) {
+    init(initialState: LoginViewState, service: LoginService, loginDidSucceded: @escaping () -> Void) {
+        self.service = service
+        self.loginDidSucceded = loginDidSucceded
         state = initialState
     }
     
     func login() {
         state.isLogginIn = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            self.state.isLogginIn = false
-            self.state.isShowingAlertError = true
+        service.login(email: state.email, password: state.password) { [weak self] error in
+            if error == nil {
+                self?.loginDidSucceded()
+            } else {
+                self?.state.isLogginIn = false
+                self?.state.isShowingAlertError = true 
+            }
         }
     }
 }
@@ -88,7 +111,13 @@ final class LoginViewModel: ObservableObject {
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LoginView(model: .init(initialState: .init()))
+            LoginView(
+                model: .init(
+                    initialState: .init(),
+                    service: EmptyLoginService(),
+                    loginDidSucceded: {}
+                )
+            )
         }
     }
 }
