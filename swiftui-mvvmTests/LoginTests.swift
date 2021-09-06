@@ -67,9 +67,31 @@ class LoginTests: XCTestCase {
     }
     
     func testUnsuccesfulLoginFlow() {
-         XCTFail()
+        viewModel.bindings.email.wrappedValue = "anthonyj2017@icloud.com"
+        viewModel.bindings.password.wrappedValue = "x"
+        
+        XCTAssert(viewModel.state.canSubmit)
+        XCTAssert(viewModel.state.footerMessage.isEmpty)
+        
+        viewModel.login()
+    
+        XCTAssertEqual(
+            viewModel.state, LoginViewState(
+                email: "anthonyj2017@icloud.com",
+                password: "x",
+                isLogginIn: true,
+                isShowingAlertError: false
+            )
+        )
+        
+        struct FakeError: Error {}
+        service.completion?(FakeError())
+        XCTAssertFalse(didCallLoginDidSucceded)
+        
+        XCTAssert(viewModel.state.canSubmit)
     }
 }
+
 
 private final class LoginServiceMock: LoginService {
     var lastRecivedEmail: String?

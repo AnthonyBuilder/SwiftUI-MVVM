@@ -14,10 +14,19 @@ struct swiftui_mvvmApp: App {
             LoginView(
                 model: .init(
                     initialState: .init(),
-                    service: EmptyLoginService(),
+                    service: FailWithDelayLoginService(),
                     loginDidSucceded: {}
                 )
             )
+        }
+    }
+}
+
+
+class FailWithDelayLoginService: LoginService {
+    func login(email: String, password: String, completion: @escaping (Error?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            completion(NSError(domain: "", code: 1, userInfo: nil))
         }
     }
 }

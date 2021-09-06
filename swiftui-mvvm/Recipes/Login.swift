@@ -15,22 +15,24 @@ struct LoginView: View {
     }
     
     var body: some View {
-        Form {
-            Section(footer: formFooter) {
-                TextField("E-mail", text: model.bindings.email)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                SecureField("Senha", text: model.bindings.password)
+        NavigationView {
+            Form {
+                Section(footer: formFooter) {
+                    TextField("E-mail", text: model.bindings.email)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                    SecureField("Senha", text: model.bindings.password)
+                }
             }
-        }
-        .navigationBarItems(trailing: submitButton)
-        .navigationBarTitle("Identifique-se")
-        .disabled(model.state.isLogginIn)
-        .alert(isPresented: model.bindings.errorAlert) {
-            Alert(
-                title: Text("Erro ao fazer login"),
-                message: Text("Verifique seu email ou senha e tente novamente.")
-            )
+            .navigationBarItems(trailing: submitButton)
+            .navigationBarTitle("Identifique-se")
+            .disabled(model.state.isLogginIn)
+            .alert(isPresented: model.bindings.errorAlert) {
+                Alert(
+                    title: Text("Erro ao fazer login"),
+                    message: Text("Verifique seu email ou senha e tente novamente.")
+                )
+            }
         }
     }
     
@@ -44,9 +46,9 @@ struct LoginView: View {
         }.disabled(model.state.canSubmit == false)
     }
 
-//    private var emailBinding: Binding<String> {
-//        Binding(get: { self.email }, set: { value in self.email = value })
-//    }
+//   private var emailBinding: Binding<String> {
+//       Binding(get: { self.email }, set: { value in self.email = value })
+//   }
 }
 
 struct LoginViewState: Equatable {
@@ -73,7 +75,9 @@ protocol LoginService {
 }
 
 struct EmptyLoginService: LoginService {
-    func login(email: String, password: String, completion: @escaping (Error?) -> Void) {}
+    func login(email: String, password: String, completion: @escaping (Error?) -> Void) {
+        completion(nil)
+    }
 }
 
 final class LoginViewModel: ObservableObject {
