@@ -83,7 +83,6 @@ struct EmptyLoginService: LoginService {
 final class LoginViewModel: ObservableObject {
     @Published var state: LoginViewState
     private let service: LoginService
-    private let loginDidSucceded: () -> Void
     
     var bindings: (email: Binding<String>, password: Binding<String>, errorAlert: Binding<Bool>) {
         (
@@ -93,20 +92,17 @@ final class LoginViewModel: ObservableObject {
         )
     }
     
-    init(initialState: LoginViewState, service: LoginService, loginDidSucceded: @escaping () -> Void) {
+    init(initialState: LoginViewState = .init(), service: LoginService) {
         self.service = service
-        self.loginDidSucceded = loginDidSucceded
         state = initialState
     }
     
     func login() {
         state.isLogginIn = true
         service.login(email: state.email, password: state.password) { [weak self] error in
-            if error == nil {
-                self?.loginDidSucceded()
-            } else {
+            if error !=  nil {
                 self?.state.isLogginIn = false
-                self?.state.isShowingAlertError = true 
+                self?.state.isShowingAlertError = true
             }
         }
     }
@@ -118,8 +114,7 @@ struct Login_Previews: PreviewProvider {
             LoginView(
                 model: .init(
                     initialState: .init(),
-                    service: EmptyLoginService(),
-                    loginDidSucceded: {}
+                    service: EmptyLoginService()
                 )
             )
         }
